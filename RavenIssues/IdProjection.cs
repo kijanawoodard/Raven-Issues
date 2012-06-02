@@ -5,7 +5,6 @@ using System.Linq;
 using Raven.Client;
 using Raven.Client.Embedded;
 using Xunit;
-using Assert = Microsoft.VisualStudio.TestTools.UnitTesting.Assert;
 
 namespace RavenIssues
 {
