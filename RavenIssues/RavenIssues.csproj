@@ -105,8 +105,10 @@
     </CodeAnalysisDependentAssemblyPaths>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="NoStaleQueriesAllowed.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="IdProjection.cs" />
+    <Compile Include="SearchTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

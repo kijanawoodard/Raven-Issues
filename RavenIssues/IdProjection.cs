@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using Raven.Client;
 using Raven.Client.Embedded;
-using Raven.Client.Listeners;
 using Xunit;
 
 namespace RavenIssues
@@ -142,14 +141,6 @@ namespace RavenIssues
             public string FooId { set; get; }
             public string Id { set; get; }
             public int Data { set; get; }
-        }
-    }
-
-    public class NoStaleQueriesAllowed : IDocumentQueryListener
-    {
-        public void BeforeQueryExecuted(IDocumentQueryCustomization queryCustomization)
-        {
-            queryCustomization.WaitForNonStaleResults();
         }
     }
 }
