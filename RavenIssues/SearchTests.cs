@@ -64,10 +64,10 @@ namespace RavenIssues
             Session.Dispose();
             DocumentStore.Dispose();
         }
-    }
 
-    internal class Foo
-    {
-        public string Data { get; set; }
+        internal class Foo
+        {
+            public string Data { get; set; }
+        }
     }
 }
