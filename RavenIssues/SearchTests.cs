@@ -59,6 +59,21 @@ namespace RavenIssues
             Assert.True(stats.TotalResults == 2);
         }
 
+        [Fact]
+        public void InClauseGetsResults()
+        {
+            RavenQueryStatistics stats;
+            var foos =
+                Session
+                    .Query<Foo>()
+                    .Statistics(out stats)
+                    .Where(x => x.Data.In("Bob", "Charles"))
+                    .ToList();
+
+            Assert.True(foos.Count == 3);
+            Assert.True(stats.TotalResults == 3);
+        }
+
         public void Dispose()
         {
             Session.Dispose();
