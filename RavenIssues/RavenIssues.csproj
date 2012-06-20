@@ -105,12 +105,14 @@
     </CodeAnalysisDependentAssemblyPaths>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AggressiveCaching.cs" />
     <Compile Include="IndexTests.cs" />
     <Compile Include="NoStaleQueriesAllowed.cs" />
     <Compile Include="NullTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="IdProjection.cs" />
     <Compile Include="SearchTests.cs" />
+    <Compile Include="SummarizeTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

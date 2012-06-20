@@ -93,6 +93,21 @@ namespace RavenIssues
             Assert.True(stats.TotalResults == 2);
         }
 
+        [Fact]
+        public void FooThis()
+        {
+            using (var session = DocumentStore.OpenSession())
+            {
+                var entity = new Plant { Name = "Company", Id = "company/1" };
+                session.Store(entity);
+                session.SaveChanges();
+                
+                var entity2 = new Plant { Name = "CompanyTwo", Id = "company/1" };
+                session.Store(entity2);
+                session.SaveChanges();
+            }
+        }
+
         public void Dispose()
         {
             Session.Dispose();
