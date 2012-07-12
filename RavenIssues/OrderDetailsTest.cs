@@ -18,10 +18,10 @@ namespace RavenIssues
 
         public OrderDetailsTest()
         {
-            DocumentStore = new EmbeddableDocumentStore { RunInMemory = true };
+            DocumentStore = new EmbeddableDocumentStore {RunInMemory = true};
             DocumentStore.RegisterListener(new NoStaleQueriesAllowed());
             DocumentStore.Initialize();
-            IndexCreation.CreateIndexes(typeof(OrderDetailsTestOrderIndex).Assembly, DocumentStore);
+            IndexCreation.CreateIndexes(typeof (OrderDetailsTestOrderIndex).Assembly, DocumentStore);
 
             Session = DocumentStore.OpenSession();
 
@@ -30,6 +30,13 @@ namespace RavenIssues
 
         private void Setup()
         {
+            var customer = new Customer {Name = "Tom"};
+
+            Session.Store(customer);
+
+            var note = new Note {CustomerId = customer.Id};
+            Session.Store(note, customer.Id + @"/note");
+
             var products = new List<Product>
                            {
                                new Product() {Description = "Salmon"},
@@ -68,7 +75,7 @@ namespace RavenIssues
                              }
                          };
 
-            orders.ForEach(x => Session.Store(x));
+            orders.ForEach(x => Session.Store(x, customer.Id + @"/order/"));
 
             Session.SaveChanges();
         }
@@ -79,11 +86,23 @@ namespace RavenIssues
             DocumentStore.Dispose();
         }
 
-       public class Order
-       {
-           public string Id { get; set; }
-           public ICollection<OrderDetail> OrderDetails { get; set; }
-       }
+        public class Customer
+        {
+            public string Id { get; set; }
+            public string Name { get; set; }
+        }
+
+        public class Note
+        {
+            public string Id { get; set; }
+            public string CustomerId { get; set; }
+        }
+
+        public class Order
+        {
+            public string Id { get; set; }
+            public ICollection<OrderDetail> OrderDetails { get; set; }
+        }
 
         public class OrderDetail
         {
@@ -97,7 +116,8 @@ namespace RavenIssues
             public string Description { get; set; }
         }
 
-        internal class OrderDetailsTestOrderIndex : AbstractIndexCreationTask<Order, OrderDetailsTestOrderIndex.TransformResult>
+        internal class OrderDetailsTestOrderIndex :
+            AbstractIndexCreationTask<Order, OrderDetailsTestOrderIndex.TransformResult>
         {
             public class TransformResult
             {
@@ -108,7 +128,8 @@ namespace RavenIssues
 
                 public override string ToString()
                 {
-                    return string.Format("OrderId: {0}, ProductId: {1}, Quantity: {2}, Description: {3}", OrderId, ProductId, Quantity, Description);
+                    return string.Format("OrderId: {0}, ProductId: {1}, Quantity: {2}, Description: {3}", OrderId,
+                                         ProductId, Quantity, Description);
                 }
             }
 
@@ -139,7 +160,7 @@ namespace RavenIssues
                 Store(x => x.Quantity, FieldStorage.Yes);
             }
         }
-        
+
         [Fact]
         public void ShouldBeAbleToFindOrdersAndProducts()
         {
