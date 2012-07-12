@@ -30,12 +30,20 @@ namespace RavenIssues
 
         private void Setup()
         {
-            var customer = new Customer {Name = "Tom"};
+            var tom = new Customer {Name = "Tom"};
 
-            Session.Store(customer);
+            Session.Store(tom);
 
-            var note = new Note {CustomerId = customer.Id};
-            Session.Store(note, customer.Id + @"/note");
+            var toms = new Note {CustomerId = tom.Id};
+            
+            var harry = new Customer { Name = "Harry" };
+
+            Session.Store(harry);
+
+            var harrys = new Note { CustomerId = harry.Id };
+
+            Session.Store(toms, tom.Id + @"/note/");
+            Session.Store(harrys, harry.Id + @"/note/");
 
             var products = new List<Product>
                            {
@@ -75,7 +83,7 @@ namespace RavenIssues
                              }
                          };
 
-            orders.ForEach(x => Session.Store(x, customer.Id + @"/order/"));
+            orders.ForEach(x => Session.Store(x, tom.Id + @"/order/"));
 
             Session.SaveChanges();
         }
