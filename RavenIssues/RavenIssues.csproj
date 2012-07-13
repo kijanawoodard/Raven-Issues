@@ -110,6 +110,7 @@
     <Compile Include="DeepIndexTests.cs" />
     <Compile Include="EscapeIdTest.cs" />
     <Compile Include="IndexTests.cs" />
+    <Compile Include="LoadTest.cs" />
     <Compile Include="NoStaleQueriesAllowed.cs" />
     <Compile Include="NullTests.cs" />
     <Compile Include="OrderDetailsTest.cs" />
