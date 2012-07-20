@@ -28,7 +28,7 @@ namespace RavenIssues
         private void Setup()
         {
             var foos =
-                Enumerable.Range(1, 1000)
+                Enumerable.Range(1, 5000)
                     .Select(x => new Foo {Id = "tenant/1/foo/"})
                     .ToList();
 
@@ -54,10 +54,10 @@ namespace RavenIssues
         {
             var foos =
                 Session
-                    .LoadStartingWith<Foo>("tenant/1", 0, 1000)
+                    .LoadStartingWith<Foo>("tenant/1", 0, 5000)
                     .ToList();
-
-            Assert.Equal(1000, foos.Count);
+            
+            Assert.Equal(5000, foos.Count);
         }
     }
 

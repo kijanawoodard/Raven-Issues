@@ -118,6 +118,7 @@
     <Compile Include="IdProjection.cs" />
     <Compile Include="RelatedItemTests.cs" />
     <Compile Include="SearchTests.cs" />
+    <Compile Include="SectionWithTagNameIndexFailingTest.cs" />
     <Compile Include="SummarizeTests.cs" />
   </ItemGroup>
   <ItemGroup>
