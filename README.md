@@ -1,4 +1,4 @@
 Raven-Issues
 ============
 
-![Hello](http://uniqueinterestingfacts.com/wp-content/uploads/2011/10/cats.bmp)
+![Hello](http://tsloughter.github.com/ceug_4_2012/file/introduction/confused.jpg)
