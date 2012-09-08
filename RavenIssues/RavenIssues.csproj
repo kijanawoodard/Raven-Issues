@@ -120,6 +120,7 @@
     <Compile Include="SearchTests.cs" />
     <Compile Include="SectionWithTagNameIndexFailingTest.cs" />
     <Compile Include="SummarizeTests.cs" />
+    <Compile Include="AverageTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
